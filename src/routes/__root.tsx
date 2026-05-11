@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { ThemeProvider } from "@/context/theme-context";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -132,6 +133,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
+          <Toaster richColors position="top-right" />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
