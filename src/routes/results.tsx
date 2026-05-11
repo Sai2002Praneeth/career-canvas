@@ -97,7 +97,7 @@ function ResultsPage() {
         <Card className="rounded-2xl border-border/70 lg:col-span-1">
           <CardContent className="p-6">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Hiring readiness</p>
-            <div className="mt-2 h-56">
+            <div className="relative mt-2 h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <RadialBarChart
                   innerRadius="70%" outerRadius="100%" startAngle={90} endAngle={-270}
@@ -107,12 +107,12 @@ function ResultsPage() {
                   <RadialBar background={{ fill: "var(--secondary)" }} dataKey="value" cornerRadius={12} />
                 </RadialBarChart>
               </ResponsiveContainer>
+              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                <p className="text-4xl font-semibold tracking-tight">{result.hiringReadiness}</p>
+                <p className="text-xs text-muted-foreground">out of 100</p>
+              </div>
             </div>
-            <div className="-mt-32 text-center">
-              <p className="text-4xl font-semibold tracking-tight">{result.hiringReadiness}</p>
-              <p className="text-xs text-muted-foreground">out of 100</p>
-            </div>
-            <p className="mt-28 text-sm text-muted-foreground">{result.summary}</p>
+            <p className="mt-4 text-sm text-muted-foreground">{result.summary}</p>
           </CardContent>
         </Card>
 
