@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UploadRouteImport } from './routes/upload'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as QuestionsRouteImport } from './routes/questions'
+import { Route as ExportRouteImport } from './routes/export'
 import { Route as IndexRouteImport } from './routes/index'
 
 const UploadRoute = UploadRouteImport.update({
@@ -29,6 +30,11 @@ const QuestionsRoute = QuestionsRouteImport.update({
   path: '/questions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExportRoute = ExportRouteImport.update({
+  id: '/export',
+  path: '/export',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/export': typeof ExportRoute
   '/questions': typeof QuestionsRoute
   '/results': typeof ResultsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/export': typeof ExportRoute
   '/questions': typeof QuestionsRoute
   '/results': typeof ResultsRoute
   '/upload': typeof UploadRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/export': typeof ExportRoute
   '/questions': typeof QuestionsRoute
   '/results': typeof ResultsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/questions' | '/results' | '/upload'
+  fullPaths: '/' | '/export' | '/questions' | '/results' | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/questions' | '/results' | '/upload'
-  id: '__root__' | '/' | '/questions' | '/results' | '/upload'
+  to: '/' | '/export' | '/questions' | '/results' | '/upload'
+  id: '__root__' | '/' | '/export' | '/questions' | '/results' | '/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExportRoute: typeof ExportRoute
   QuestionsRoute: typeof QuestionsRoute
   ResultsRoute: typeof ResultsRoute
   UploadRoute: typeof UploadRoute
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuestionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/export': {
+      id: '/export'
+      path: '/export'
+      fullPath: '/export'
+      preLoaderRoute: typeof ExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExportRoute: ExportRoute,
   QuestionsRoute: QuestionsRoute,
   ResultsRoute: ResultsRoute,
   UploadRoute: UploadRoute,
