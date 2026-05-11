@@ -135,11 +135,7 @@ function ResultsPage() {
                     cursor={{ fill: "var(--secondary)" }}
                     contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12, fontSize: 12 }}
                   />
-                  <Bar dataKey="value" radius={[0, 6, 6, 0]}>
-                    {skillsData.map((d, i) => (
-                      <cell key={i} />
-                    ))}
-                  </Bar>
+                  <Bar dataKey="value" radius={[0, 6, 6, 0]} fill="var(--accent)" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
