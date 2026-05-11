@@ -163,3 +163,9 @@
     line-height: 1.7;
   }
 }
+
+@media print {
+  header, footer, nav, .print\:hidden { display: none !important; }
+  body { background: white !important; color: black !important; }
+  main { padding: 0 !important; }
+}
